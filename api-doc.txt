@@ -13,3 +13,5 @@ GET localhost:4000/posts/edit/6014928519d8802d384db191?title=edited title&body=e
 to delete: is a delete request
 DELETE localhost:4000/posts/delete/6014928519d8802d384db191
 
+
+NOPE: params have to be sent x-www-form-urlencoded in order to work, friggin postman
