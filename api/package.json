@@ -4,13 +4,14 @@
   "description": "A social media platform written with Node.js",
   "main": "server.js",
   "scripts": {
-    "test": ""
+    "test": "mocha"
   },
   "keywords": [],
   "dependencies": {
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "express": "^4.16.4",
+    "express-rate-limit": "^5.2.3",
     "mongoose": "^5.11.14"
   },
   "devDependencies": {
