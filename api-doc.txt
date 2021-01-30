@@ -1,0 +1,15 @@
+To add to the database:
+POST request: localhost:4000/posts/add?title=new&body=new body
+
+to read the database:
+GET request: localhost:4000/posts/?title=title&body=body
+
+to update: has to be a Post request 
+POST localhost:4000/posts/update/6014928519d8802d384db191?title=edited title&body=edited body
+
+to edit: has to be a get request
+GET localhost:4000/posts/edit/6014928519d8802d384db191?title=edited title&body=edited body
+
+to delete: is a delete request
+DELETE localhost:4000/posts/delete/6014928519d8802d384db191
+
