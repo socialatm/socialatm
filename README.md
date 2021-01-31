@@ -1,5 +1,9 @@
 ### Hi there 👋
 
+`npm start` or `node server` from the command line to start the server.
+
+`npm test` from the command line to run the tests.
+
 <!--
 **socialatm/socialatm** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
