@@ -4,7 +4,8 @@
   "description": "A social media platform written with Node.js",
   "main": "server.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "start": "nodemon server"
   },
   "keywords": [],
   "dependencies": {
