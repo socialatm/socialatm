@@ -14,16 +14,17 @@ postRoutes.use(limiter);
 // Require Post model in our routes module
 let Post = require('./post.model');
 
-// Defined store route
+// On success the post variable contains the response body.
 postRoutes.route('/add').post(function (req, res) {
   let post = new Post(req.body);
   post.save()
-    .then(() => {
-      res.status(200).json({'business': 'business in added successfully'});
-    })
-    .catch(() => {
-      res.status(400).send("unable to save to database");
-    });
+  .then(() => {
+  // returns the response body object and the status code.
+    res.status(200).send(post);
+  })
+  .catch(() => {
+    res.status(400).send("unable to save to database");
+  });  
 });
 
 // Defined get data(index or listing) route
