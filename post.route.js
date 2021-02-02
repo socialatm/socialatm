@@ -27,16 +27,15 @@ postRoutes.route('/add').post(function (req, res) {
   });  
 });
 
-// Defined get data(index or listing) route
+// If find() is not passed a query it would return every single post in the posts collection.
 postRoutes.route('/').get(function (req, res) {
-    Post.find(function(err, posts){
-    if(err){
-      res.json(err);
-    }
-    else {
-      res.json(posts);
-    }
-  });
+  const posts = new Post();
+  // If query IS passed into .find(), it filters by the query parameters
+  Post.find(req.query, (err, posts) =>{
+    if (err) return res.status(500).send("No Results")
+    return res.status(200).send(posts);
+    // we've added a limit to how many posts it returns here.
+  }).limit(5);
 });
 
 // Defined edit route
