@@ -49,7 +49,7 @@ postRoutes.route('/edit/:id').get(function (req, res) {
   });
 });
 
-//  Defined update route
+//  Define the post update route
 postRoutes.route('/update/:id').post(function (req, res) {
     Post.findById(req.params.id, function(err, post) {
     if (!post)
