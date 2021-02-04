@@ -66,14 +66,20 @@ postRoutes.route('/update').post(function (req, res) {
   };
 });
 });
- 
 
-// Defined delete | remove | destroy route
-postRoutes.route('/delete/:id').delete(function (req, res) {
-    Post.findByIdAndRemove({_id: req.params.id}, function(err){
-        if(err) res.json(err);
-        else res.json('Successfully removed');
-    });
+// Remove a post from the database.
+postRoutes.route('/delete').get(function (req, res) {
+  // console.log(req);
+  var id = req.query.id;
+  var doc = Post.findByIdAndDelete( id, function(err, doc){
+    if (!doc) { 
+      res.status(404).send("data is not found");
+    } else if(doc) {
+      res.status(200).send(doc);
+    } else {
+      res.status(400).send("unable to delete from the database");
+    };
+  });
 });
 
 module.exports = postRoutes;
