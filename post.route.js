@@ -38,17 +38,6 @@ postRoutes.route('/').get(function (req, res) {
   }).limit(5);
 });
 
-// Defined edit route
-postRoutes.route('/edit/:id').get(function (req, res) {
-  let id = req.params.id;
-  Post.findById(id, function (err, post){
-      if(err) {
-        res.json(err);
-      }
-      res.json(post);
-  });
-});
-
 //  Define the post update route
 postRoutes.route('/update').post(function (req, res) {
   var doc = Post.findById( req.body.id, function(err, post) {
