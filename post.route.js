@@ -50,22 +50,23 @@ postRoutes.route('/edit/:id').get(function (req, res) {
 });
 
 //  Define the post update route
-postRoutes.route('/update/:id').post(function (req, res) {
-    Post.findById(req.params.id, function(err, post) {
+postRoutes.route('/update').post(function (req, res) {
+  var doc = Post.findById( req.body.id, function(err, post) {
     if (!post)
       res.status(404).send("data is not found");
     else {
-        post.title = req.body.title;
-        post.body = req.body.body;
-        post.save().then(() => {
-          res.json('Update complete');
-      })
-      .catch(() => {
-            res.status(400).send("unable to update the database");
-      });
-    }
-  });
+      post.title = req.body.title;
+      post.body = req.body.body;
+      post.save().then(() => {
+        res.status(200).send(post);
+    })
+    .catch(() => {
+      res.status(400).send("unable to update the database");
+    });
+  };
 });
+});
+ 
 
 // Defined delete | remove | destroy route
 postRoutes.route('/delete/:id').delete(function (req, res) {
