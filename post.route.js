@@ -32,11 +32,19 @@ postRoutes.route('/add').post(function (req, res) {
 postRoutes.route('/').get(function (req, res) {
   const posts = new Post();
   // If query IS passed into .find(), it filters by the query parameters
-  Post.find(req.query, (err, posts) =>{
-    if (err) return res.status(500).send("No Results")
-    return res.status(200).send(posts);
-    // we've added a limit to how many posts it returns here.
-  }).limit(5);
+  if(req.query.id){
+    if(!validator.isMongoId(req.query.id)){return res.status(404).send("data is not found");}
+    Post.findById(req.query.id, (err, posts) =>{
+      if (err) return res.status(500).send("No Results")
+      return res.status(200).send(posts);
+      });
+  }else{
+    Post.find(req.query, (err, posts) =>{
+      if (err) return res.status(500).send("No Results")
+      return res.status(200).send(posts);
+      // we've added a limit to how many posts it returns here.
+    }).limit(5);
+  }
 });
 
 //  Define the post update route
