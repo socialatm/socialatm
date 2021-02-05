@@ -61,8 +61,7 @@ postRoutes.route('/update').post(function (req, res) {
 // Remove a post from the database.
 postRoutes.route('/delete').get(function (req, res) {
   if(!validator.isMongoId(req.query.id)){return res.status(404).send("data is not found");}
-  var id = req.query.id;
-  var doc = Post.findByIdAndDelete( id, function(err, doc){
+    var doc = Post.findByIdAndDelete( req.query.id, function(err, doc){
     if (!doc) { 
       res.status(404).send("data is not found");
     } else if(doc) {
