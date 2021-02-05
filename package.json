@@ -13,7 +13,8 @@
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "express-rate-limit": "^5.2.3",
-    "mongoose": "^5.11.14"
+    "mongoose": "^5.11.14",
+    "validator": "^13.5.2"
   },
   "devDependencies": {
     "mocha": "^8.2.1",

@@ -1,5 +1,6 @@
 const express = require('express');
 const postRoutes = express.Router();
+var validator = require('validator');
 
 // set up rate limiter: maximum of five requests per minute
 var RateLimit = require('express-rate-limit');
@@ -40,6 +41,7 @@ postRoutes.route('/').get(function (req, res) {
 
 //  Define the post update route
 postRoutes.route('/update').post(function (req, res) {
+  if(!validator.isMongoId(req.body.id)){return res.status(404).send("data is not found");}
   var doc = Post.findById( req.body.id, function(err, post) {
     if (!post)
       res.status(404).send("data is not found");
@@ -58,7 +60,7 @@ postRoutes.route('/update').post(function (req, res) {
 
 // Remove a post from the database.
 postRoutes.route('/delete').get(function (req, res) {
-  // console.log(req);
+  if(!validator.isMongoId(req.query.id)){return res.status(404).send("data is not found");}
   var id = req.query.id;
   var doc = Post.findByIdAndDelete( id, function(err, doc){
     if (!doc) { 
